@@ -1,5 +1,6 @@
 package fr.cicd.tp1.controller;
 
+import fr.cicd.tp1.dto.FishDTO;
 import fr.cicd.tp1.entity.Fish;
 import fr.cicd.tp1.service.FishService;
 import org.springframework.http.HttpStatus;
@@ -22,19 +23,19 @@ public class FishController {
     }
 
     @PostMapping
-    public Fish createFish(@RequestBody Fish fish) {
-        return fishService.createFish(fish);
+    public FishDTO createFish(@RequestBody Fish fish) {
+        return fishService.createFish(fish).toDto();
     }
 
     @PatchMapping(path = "/{id}")
-    public Fish updateFish(@PathVariable int id, @RequestBody Fish fish) {
+    public FishDTO updateFish(@PathVariable int id, @RequestBody Fish fish) {
         final Fish modifiedFish = fishService.updateFishById(id, fish);
         if (modifiedFish == null) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "entity not found"
             );
         }
-        return modifiedFish;
+        return modifiedFish.toDto();
     }
 
     @DeleteMapping(path = "/{id}")
