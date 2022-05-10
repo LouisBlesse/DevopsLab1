@@ -12,6 +12,5 @@ sudo apt-get -y install git > /dev/null 2>&1
 echo "Installing git-ftp"
 sudo apt-get -y install git-ftp > /dev/null 2>&1
 
-sleep 1m
-
-echo "Hello"
+echo "Installing Docker"
+sudo apt-get -y install docker.io > /dev/null 2>&1
